@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # python library for google earth plot
@@ -23,7 +23,7 @@ class googleearthplot:
         """
         Plot Line Chart from CSVfile
         """
-        print "[PlotLineChartFromCSV] plotting a line chart from csv file:" + filepath
+        print("[PlotLineChartFromCSV] plotting a line chart from csv file:" + filepath)
         data = pandas.read_csv(filepath)
 
         if "height" in data:
@@ -43,7 +43,7 @@ class googleearthplot:
         pnt.style.labelstyle.scale = labelScale
         pnt.timestamp.when = time
 
-        print "[PlotPoint]" + label + ",lat:" + str(lat) + ",lon:" + str(lon) + ",time" + time
+        print("[PlotPoint]" + label + ",lat:" + str(lat) + ",lon:" + str(lon) + ",time" + time)
 
     def PlotLineChart(self, latList, lonList, heightList=[], name="", color="red", width=5):
         """
@@ -67,7 +67,7 @@ class googleearthplot:
         ls.style.linestyle.width = width
         ls.style.linestyle.color = self.GetColorObject(color)
 
-        print "[PlotLineChart]name:" + name + ",color:" + color + ",width:" + str(width)
+        print("[PlotLineChart]name:" + name + ",color:" + color + ",width:" + str(width))
 
     def PlotBarChart(self, lat, lon, num, size=1, name="", color="red", addLabel=False):
         """
@@ -107,7 +107,7 @@ class googleearthplot:
         if addLabel:
             self.PlotLabel(lat, lon, name + ":" + str(num), color=color)
 
-        print "[PlotBarChart]lat:" + str(lat) + ",lon:" + str(lon)
+        print("[PlotBarChart]lat:" + str(lat) + ",lon:" + str(lon))
 
     def PlotLabel(self, lat, lon, label, color="red", labelScale=1):
         """
@@ -118,13 +118,13 @@ class googleearthplot:
         pnt.style.labelstyle.color = self.GetColorObject(color)
         pnt.style.labelstyle.scale = labelScale
         pnt.style.iconstyle.scale = 0  # hide icon
-        print "[PlotLabel]" + label
+        print("[PlotLabel]" + label)
 
     def PlotBarChartsFromCSV(self, filepath, addLabel=False):
         """
         filepath: csvfile path
         """
-        print "[PlotBarChartsFromCSV]plotting bar charts from csv file:" + filepath
+        print("[PlotBarChartsFromCSV]plotting bar charts from csv file:" + filepath)
         data = pandas.read_csv(filepath)
 
         # PlotBarChart
@@ -134,7 +134,7 @@ class googleearthplot:
             self.PlotBarChart(lat, lon, num, size, name, color, addLabel=addLabel)
             nbar += 1
 
-        print "[PlotBarChartsFromCSV]" + str(nbar) + " bars have plotted"
+        print("[PlotBarChartsFromCSV]" + str(nbar) + " bars have plotted")
 
     def PlotOverlayImg(self, filepath, xpixel, ypixel, name="ScreenOverlay"):
         """
@@ -143,7 +143,7 @@ class googleearthplot:
         ypixel
         name (option)
         """
-        print "[PlotOverlayImg] plotting image file:" + filepath + ",xpixel:" + str(xpixel) + ",ypixel" + str(ypixel)
+        print("[PlotOverlayImg] plotting image file:" + filepath + ",xpixel:" + str(xpixel) + ",ypixel" + str(ypixel))
 
         screen = self.kml.newscreenoverlay(name=name)
         screen.icon.href = filepath
