@@ -45,7 +45,7 @@ class googleearthplot(object):
 
         print("[PlotPoint]" + label + ",lat:" + str(lat) + ",lon:" + str(lon) + ",time" + time)
 
-    def PlotLineChart(self, latList, lonList, heightList=[], name="", color="red", width=5):
+    def PlotLineChart(self, latList, lonList, heightList=[], name="", color="red", width=5, altMode='relativeToGround'):
         """
         Plot Line Chart
         """
@@ -61,9 +61,16 @@ class googleearthplot(object):
             for (lat, lon, height) in zip(latList, lonList, heightList):
                 coords.append((lon, lat, height))
 
+        altModes = {
+            'absolute':simplekml.AltitudeMode.absolute,
+            'clampToGround': simplekml.AltitudeMode.clamptoground,
+            'relativeToGround': simplekml.AltitudeMode.relativetoground
+            }
+        
+
         ls.coords = coords
         ls.extrude = 1
-        ls.altitudemode = simplekml.AltitudeMode.relativetoground
+        ls.altitudemode = altModes[altMode]
         ls.style.linestyle.width = width
         ls.style.linestyle.color = self.GetColorObject(color)
 
