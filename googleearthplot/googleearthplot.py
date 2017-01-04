@@ -14,7 +14,7 @@ import pandas
 import math
 
 
-class googleearthplot:
+class googleearthplot(object):
 
     def __init__(self):
         self.kml = simplekml.Kml()
