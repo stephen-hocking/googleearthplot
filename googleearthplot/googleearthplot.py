@@ -184,7 +184,7 @@ class googleearthplot(object):
         animatedupdate = playlist.newgxanimatedupdate(gxduration=1.0)
 
         for (lat, lon, height, heading, deltat) in zip(latList, lonList, heightList, headingList, deltatList):
-            flyto = playlist.newgxflyto(gxduration=(timestretch * deltat),gxflytomode='smooth')
+            flyto = playlist.newgxflyto(gxduration=(timestretch * deltat), gxflytomode='smooth')
             flyto.camera.longitude = lon
             flyto.camera.latitude = lat
             flyto.camera.altitude = height
@@ -193,7 +193,7 @@ class googleearthplot(object):
             flyto.camera.roll = roll
             flyto.camera.altitudemode = simplekml.AltitudeMode.absolute
 
-        print("[PlotPlaneMovie]name:" + name + "timestretch:" + str(timestretch))
+        print("[PlotPlaneMovie]name:" + name + " timestretch:" + str(timestretch))
 
 
 
