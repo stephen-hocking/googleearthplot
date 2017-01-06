@@ -62,7 +62,7 @@ class googleearthplot(object):
                 coords.append((lon, lat, height))
 
         altModes = {
-            'absolute':simplekml.AltitudeMode.absolute,
+            'absolute': simplekml.AltitudeMode.absolute,
             'clampToGround': simplekml.AltitudeMode.clamptoground,
             'relativeToGround': simplekml.AltitudeMode.relativetoground
             }
@@ -176,6 +176,26 @@ class googleearthplot(object):
     def GenerateKMLFile(self, filepath="sample.kml"):
         """Generate KML File"""
         self.kml.save(filepath)
+
+    def PlotPlaneMovie(self, latList, lonList, heightList, headingList, deltatList, name="", timestretch=0.1, tilt=90.0, roll=0.0):
+
+        tour = self.kml.newgxtour(name="Play me")
+        playlist = tour.newgxplaylist()
+        animatedupdate = playlist.newgxanimatedupdate(gxduration=1.0)
+
+        for (lat, lon, height, heading, deltat) in zip(latList, lonList, heightList, headingList, deltatList):
+            flyto = playlist.newgxflyto(gxduration=(timestretch * deltat),gxflytomode='smooth')
+            flyto.camera.longitude = lon
+            flyto.camera.latitude = lat
+            flyto.camera.altitude = height
+            flyto.camera.heading = heading
+            flyto.camera.tilt = tilt
+            flyto.camera.roll = roll
+            flyto.camera.altitudemode = simplekml.AltitudeMode.absolute
+
+        print("[PlotPlaneMovie]name:" + name + "timestretch:" + str(timestretch))
+
+
 
 if __name__ == '__main__':
 
