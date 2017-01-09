@@ -191,9 +191,12 @@ class googleearthplot(object):
             flyto.camera.heading = heading
             flyto.camera.tilt = tilt
             flyto.camera.roll = roll
-            flyto.camera.altitudemode = simplekml.AltitudeMode.absolute
+            if height == 0:
+                flyto.camera.altitudemode = simplekml.AltitudeMode.clamptoground
+            else:
+                flyto.camera.altitudemode = simplekml.AltitudeMode.absolute
 
-        print("[PlotPlaneMovie]name:" + name + " timestretch:" + str(timestretch))
+        print("[PlotPlaneMovie]name:" + name + " timestretch:" + str(timestretch) + " tilt:" + str(tilt) + " roll:" + str(roll))
 
 
 
